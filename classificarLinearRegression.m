@@ -14,10 +14,12 @@ function [ classe ] = classificarLinearRegression( MODELS, y )
     Y = []; % vetor com a projecao yChapeu de cada classe.
     
     for(i=1 : dimensions)
-    
+        
         X = MODELS(:, :, i);        % i ésimo modelo
         B = inv(X' * X) * X' * y;     % vetor de parametros
         yChapeu = X*B;              % projecao
+        Y = [Y, yChapey];           % concatenando os vetores de projecao
+        
     end
 
 
