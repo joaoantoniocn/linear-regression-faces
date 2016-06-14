@@ -1,0 +1,11 @@
+#ignore folders
+/training
+/test
+/lfw
+/lfw-deepfunneled
+/treino
+/folders
+/AT&T_folders
+*.mat
+~*
+*.asv
