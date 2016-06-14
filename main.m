@@ -1,8 +1,11 @@
 % Reconhecimento de imagens atrávez de regressão linear
 
 % treino
-downsamplesize = 3;
-MODELS = treinarLinear(downsamplesize);
+%AT&T
+downsampleX = 10;
+downsampleY = 5;
+
+MODELS = treinarLinear(downsampleX, downsampleY);
 
 %teste
-resultados = estatisticaLinearRegression(MODELS, downsamplesize);
+resultados = estatisticaLinearRegression(MODELS, downsampleX, downsampleY);

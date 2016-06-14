@@ -1,4 +1,4 @@
-function [ classe ] = classificarLinearRegression( MODELS, y )
+function [ indiceModelo ] = classificarLinearRegression( MODELS, y )
 %CLASSIFICARLINEARREGRESSION Summary of this function goes here
 %   
 % recebe as features y e os modelos e devolve o id da classe que y pertence
@@ -10,16 +10,26 @@ function [ classe ] = classificarLinearRegression( MODELS, y )
 % Saida -> classe      | id da classe de x em MODELS
 
     [linhas, colunas, dimensions] = size(MODELS); % dimensions = numero de classes
-    
-    Y = []; % vetor com a projecao yChapeu de cada classe.
-    
+     menorDistancia = 0;   
+     indiceModelo = 0;
+     
     for(i=1 : dimensions)
         
-        X = MODELS(:, :, i);        % i ésimo modelo
+        X = MODELS(:, :, i);          % i ésimo modelo
         B = inv(X' * X) * X' * y;     % vetor de parametros
-        yChapeu = X*B;              % projecao
-        Y = [Y, yChapey];           % concatenando os vetores de projecao
+        yChapeu = X*B;                % projecao
+        vetorSubtracao = y - yChapeu; % subtraindo modelo original por modelo de outras imagens
+        distancia = norm(vetorSubtracao, 2); % distancia euclidiana do vetorSubtracao
         
+        % verifica qual modelo tem a menor distancia e retorna esse modelo
+        if(i == 1)
+            menorDistancia = distancia;
+            indiceModelo = i;
+        end
+        if(distancia < menorDistancia)  
+            menorDistancia = distancia;
+            indiceModelo = i;
+        end
     end
 
 

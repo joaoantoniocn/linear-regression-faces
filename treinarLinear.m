@@ -1,4 +1,4 @@
-function [ MODELS ] = treinarLinear( downsamplesize )
+function [ MODELS ] = treinarLinear( downsampleX, downsampleY )
 %TREINARLINEAR
 % varre todas as pastas do diretorio indicado em CAMINHO_BASE e gera uma
 % matriz tridimensional onde cada dimensao desse matriz é o modelo de uma
@@ -34,7 +34,7 @@ function [ MODELS ] = treinarLinear( downsamplesize )
            % tratando a imagem
            x = imread([nome_pasta_completo, nome_fotos(j).name]);
            
-           x = linearFeatures(x, downsamplesize);
+           x = linearFeatures(x, downsampleX, downsampleY);
            
            X = [X, x]; % adicionando imagem no modelo
        end 
