@@ -3,7 +3,7 @@
 % treino
 %AT&T
 downsampleX = 10;
-downsampleY = 5;
+downsampleY = 10;
 
 MODELS = treinarLinear(downsampleX, downsampleY);
 

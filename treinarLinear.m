@@ -25,7 +25,7 @@ function [ MODELS ] = treinarLinear( downsampleX, downsampleY )
        
        nome_pasta = pastas(i).name;
        nome_pasta_completo = [CAMINHO_BASE, nome_pasta, '/'];
-       nome_fotos = dir([nome_pasta_completo, '/*pgm']);
+       nome_fotos = dir([nome_pasta_completo, '/*bmp']);
        
        X = []; % modelo para classe da vez
        % passa por todas as fotos de cada pasta

@@ -1,4 +1,4 @@
-function [ resultados ] = estatisticaLinearRegression( MODELS, downsampleX, downsampleY )
+function [ resultados ] = estatisticaLinearRegressionCrooped( MODELS, downsampleX, downsampleY)
 % 
 % varre todas as pastas do diretorio indicado em CAMINHO_BASE e gera uma
 % matriz com a taxa de acerto de cada classe
@@ -6,6 +6,8 @@ function [ resultados ] = estatisticaLinearRegression( MODELS, downsampleX, down
 % entrada  -> downsamplesize | indica o tamanho do downsample usado nas
 %                              imagens, geralmente cada base ultiliza um
 %                              tamanho de downsample diferente.
+% entrada  -> cortes         | numero de cortes feitos na imagem para o
+%                              treino.
 %
 % saida -> resultados        | Matriz com a taxa de acerto de cada classe
 %
@@ -30,9 +32,10 @@ function [ resultados ] = estatisticaLinearRegression( MODELS, downsampleX, down
            % imshow([nome_pasta_completo, nome_fotos(j).name]);
            % tratando a imagem
            x = imread([nome_pasta_completo, nome_fotos(j).name]);
+           x = imresize(x, [downsampleX, downsampleY]); % resize
+           x = rgb2gray(x); % de colorido para preto e branco
            
-           y = linearFeatures(x, downsampleX, downsampleY);
-           if(classificarLinearRegression(MODELS, y) == i-2)
+           if(classificarLinearRegressionCrooped(MODELS, x) == i-2)
                resultadoClasse = resultadoClasse + 1;
            end  
            

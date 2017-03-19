@@ -1,29 +1,52 @@
-function [ ] = separarbase( file_name  )
+function [ ] = separarbase( file_name, nomes  )
 
     %random
     %rng(0,'twister');
-
- file_name = [file_name, '/'];
-    pastas = dir(file_name);
+ 
+%  destino = ['./individuos_qr'];
+%  mkdir(destino);
     
-    for i = 3 : length(pastas)
-        
-       nome_pasta = pastas(i).name;
-       nome_pasta_completo = [file_name, nome_pasta, '/'];
-       nome_fotos = dir([nome_pasta_completo, '/*pgm']);
+ file_name = [file_name, '/'];
+%  nome_fotos = dir([file_name, '/*jpg']);
+%  
+%  for i = 1 : length(nome_fotos)
+%      
+%     classe = nome_fotos(i).name(1:5);
+%     
+%     classeFolder = [destino, '/', classe];
+%     mkdir(classeFolder);
+%     
+%     copyfile([file_name, nome_fotos(i).name], [classeFolder, '/', nome_fotos(i).name]);
+%         
+%     
+%  end    
+%  
+    pastas = dir(file_name);
+      
        
-       mkdir(['./test/', nome_pasta]);
-       mkdir(['./treino/', nome_pasta]);
-       for j = 1 : length(nome_fotos)
-           
-           % if j > (length(nome_fotos) - (length(nome_fotos)/4))
-             
-                if j <= length(nome_fotos)/2
-                    movefile([ nome_pasta_completo, '/', nome_fotos(j).name ], ['./test/', nome_pasta, '/', nome_fotos(j).name ])
-                end
-              
-            %end            
-       end   
+%     for i = 3 : length(pastas)
+%         
+%        nome_pasta = pastas(i).name;
+%        nome_pasta_completo = [file_name, nome_pasta, '/'];
+%        nome_fotos = dir([nome_pasta_completo, '/*jpg']);
+%        
+%        mkdir(['./test/', nome_pasta]);
+%        mkdir(['./treino/', nome_pasta]);
+%        for j = 1 : length(nome_fotos)
+%            
+%            % if j > (length(nome_fotos) - (length(nome_fotos)/4))
+%              
+%                 if j <= 3
+%                     movefile([ nome_pasta_completo, '/', nome_fotos(j).name ], ['./treino/', nome_pasta, '/', nome_fotos(j).name ])
+%                 end
+%                 
+%                 if j == 4
+%                     movefile([ nome_pasta_completo, '/', nome_fotos(j).name ], ['./test/', nome_pasta, '/', nome_fotos(j).name ])
+%                 end    
+%               
+%             %end            
+%        end   
+%     end
 % 
 %         ---- random
 %         [trainInd,valInd,testInd] = dividerand( length(nome_fotos),0.7,0.0,0.2);
@@ -39,6 +62,6 @@ function [ ] = separarbase( file_name  )
 %         copyfile([ nome_pasta_completo, '/', nome_fotos(trainInd(4)).name ], ['./treino/', nome_pasta, '/', nome_fotos(trainInd(4)).name ])
 %         copyfile([ nome_pasta_completo, '/', nome_fotos(trainInd(5)).name ], ['./treino/', nome_pasta, '/', nome_fotos(trainInd(5)).name ])
         
-    end    
+%    end    
 end
 
