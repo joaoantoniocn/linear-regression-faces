@@ -1,4 +1,4 @@
-function [ ] = separarbaseHoldout( file_name, indice  )
+function [treino teste ] = separarbaseHoldout( file_name, indice  )
 
 % Atualmente usado para separar as bases em wavelet
 % ----------------------------
@@ -18,59 +18,59 @@ holdout = char(result(indice));
 holdout = strsplit(holdout, ';');
 treino = char(holdout(1));
 teste = char(holdout(2));
-% --- criar diretório para classes
-classes = strsplit(treino, '|');
-classes(1) = [];
-classes = classes';
-
-% Apagando antigo holdout
-rmdir('./test', 's');
-rmdir('./treino', 's');
-
-% Criando pastas para o novo holdout
-mkdir('./test');
-mkdir('./treino');
-
-% Criando pasta para as classes
-for i = 1 : length(classes)
-    classe = strsplit(char(classes(i)), ',');
-    classe = classe(1);
-    classeTreino = strcat('./treino/', classe);
-    classeTest = strcat('./test/', classe);
-    
-    mkdir(char(classeTreino));
-    mkdir(char(classeTest));
-end
-
-% Separando treino
-classes = strsplit(treino, '|');
-for i = 1 : length(classes)
-    classe = strsplit(char(classes(i)), ',');
-    
-    % Separando exemplos de cada classe
-    for j = 2 : length(classe)
-        amostra_treino = char(classe(j));
-        file_origem = strcat('./base/', amostra_treino);
-        file_destino = strcat('./treino/', amostra_treino);
-        copyfile (char(file_origem), char(file_destino));
-    end
-    
-end
-
-% Separando test
-classes = strsplit(teste, '|');
-for i = 1 : length(classes)
-    classe = strsplit(char(classes(i)), ',');
-    
-    % Separando exemplos de cada classe
-    for j = 2 : length(classe)
-        amostra_treino = char(classe(j));
-        file_origem = strcat('./base/', amostra_treino);
-        file_destino = strcat('./test/', amostra_treino);
-        copyfile (char(file_origem), char(file_destino));
-    end
-    
-end
-   
+% % --- criar diretório para classes
+% classes = strsplit(treino, '|');
+% classes(1) = [];
+% classes = classes';
+% 
+% % Apagando antigo holdout
+% rmdir('./test', 's');
+% rmdir('./treino', 's');
+% 
+% % Criando pastas para o novo holdout
+% mkdir('./test');
+% mkdir('./treino');
+% 
+% % Criando pasta para as classes
+% for i = 1 : length(classes)
+%     classe = strsplit(char(classes(i)), ',');
+%     classe = classe(1);
+%     classeTreino = strcat('./treino/', classe);
+%     classeTest = strcat('./test/', classe);
+%     
+%     mkdir(char(classeTreino));
+%     mkdir(char(classeTest));
+% end
+% 
+% % Separando treino
+% classes = strsplit(treino, '|');
+% for i = 1 : length(classes)
+%     classe = strsplit(char(classes(i)), ',');
+%     
+%     Separando exemplos de cada classe
+%     for j = 2 : length(classe)
+%         amostra_treino = char(classe(j));
+%         file_origem = strcat('./base/', amostra_treino);
+%         file_destino = strcat('./treino/', amostra_treino);
+%         copyfile (char(file_origem), char(file_destino));
+%     end
+%     
+% end
+% 
+% % Separando test
+% classes = strsplit(teste, '|');
+% for i = 1 : length(classes)
+%     classe = strsplit(char(classes(i)), ',');
+%     
+%     % Separando exemplos de cada classe
+%     for j = 2 : length(classe)
+%         amostra_treino = char(classe(j));
+%         file_origem = strcat('./base/', amostra_treino);
+%         file_destino = strcat('./test/', amostra_treino);
+%         copyfile (char(file_origem), char(file_destino));
+%     end
+%     
+% end
+%    
 end
 
