@@ -15,7 +15,7 @@ for i=1 : 100
     media = cell2mat(resultados(:, 2));
     media = mean(media);
     holdout_result(i) = media;
-    display(i);
+%     display(i);
 end
 
 final_result = mean(holdout_result);

@@ -14,6 +14,7 @@ function [ resultados ] = estatisticaLinearRegressionWavelet( MODELS, teste )
 resultados = [];
 
 classes = strsplit(teste, '|');
+classes(1) = [];
 for i = 1 : length(classes)
     amostras = strsplit(char(classes(i)), ',');
     

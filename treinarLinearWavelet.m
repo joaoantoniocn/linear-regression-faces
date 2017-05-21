@@ -17,6 +17,7 @@ MODELS = []; % variavel onde vai guardar todos os modelos
 % matrix de 3d
 
 classes = strsplit(treino, '|');
+classes(1) = [];
 for i = 1 : length(classes)
     amostras = strsplit(char(classes(i)), ',');
     X = []; % modelo para classe da vez
