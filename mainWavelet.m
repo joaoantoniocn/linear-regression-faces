@@ -3,9 +3,9 @@
 % É de extrema importancia que a base a ser rodada com todas suas classes
 % esteja na pasta 'base'.
 holdout_result = [];
-for i=1 : 100
+for i=1 : 50
     % arquivo que contem todos os holdouts
-    [treino teste] = separarbaseHoldout('./ARFaces.txt', i);
+    [treino teste] = separarbaseHoldout('./GTech.txt', i);
     
     % Criação dos modelos
     MODELS = treinarLinearWavelet(treino);

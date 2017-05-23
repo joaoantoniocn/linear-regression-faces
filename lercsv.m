@@ -34,8 +34,8 @@ delimiter = ';';
 %	column18: double (%f)
 %   column19: double (%f)
 % For more information, see the TEXTSCAN documentation.
-formatSpec = '%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%[^\n\r]';
-
+% Alterar de acordo com a dimensão de cada amostra
+formatSpec = '%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%[^\n\r]';
 %% Open the text file.
 fileID = fopen(filename,'r');
 

@@ -23,6 +23,7 @@ for i = 1 : length(classes)
     for j = 2 : length(amostras)
         amostra_teste = char(amostras(j));
         file_origem = strcat('./base/', amostra_teste);
+       
         x = lercsv(file_origem);
         
         % A extração das caracteriscas acabou ficando igual a da Crooped
