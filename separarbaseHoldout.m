@@ -18,6 +18,11 @@ holdout = char(result(indice));
 holdout = strsplit(holdout, ';');
 treino = char(holdout(1));
 teste = char(holdout(2));
+
+% ------- Renomear a extensão dos arquivos
+treino = strrep(treino, '.csv', '.png');
+teste = strrep(teste, '.csv', '.png');
+% -------
 % % --- criar diretório para classes
 % classes = strsplit(treino, '|');
 % classes(1) = [];
