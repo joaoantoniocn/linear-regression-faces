@@ -9,6 +9,7 @@ holdout_result = [];
 downsampleX = 10;
 downsampleY = 10;
 
+% For com a quantidade de holdouts
 for i=1 : 100
     % arquivo que contem todos os holdouts
     [treino teste] = separarbaseHoldout('./EssexFaces.txt', i);

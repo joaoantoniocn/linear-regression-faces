@@ -1,9 +1,4 @@
 function [ MODELS ] = treinarLinearFile( treino, downsampleX, downsampleY )
-%TREINARLINEAR
-% varre todas as pastas do diretorio indicado em CAMINHO_BASE e gera uma
-% matriz tridimensional onde cada dimensao desse matriz é o modelo de uma
-% classe contida em CAMINHO_BASE
-%
 % saida -> MODELS            | Matriz tridimensional onde cada dimensão
 %                              representa o modelo de uma classe.
 %
@@ -18,6 +13,8 @@ MODELS = []; % variavel onde vai guardar todos os modelos
 
 classes = strsplit(treino, '|');
 classes(1) = [];
+
+% Passando por todas as Classes
 for i = 1 : length(classes)
     amostras = strsplit(char(classes(i)), ',');
     X = []; % modelo para classe da vez
@@ -28,7 +25,7 @@ for i = 1 : length(classes)
         file_origem = strcat('./base/', amostra_treino);
         x = imread(file_origem);
         
-        % A extração das caracteriscas acabou ficando igual a da Crooped
+        % Extraindo as caracteristicas
         x = linearFeatures(x, downsampleX, downsampleY);
         
         X = [X, x]; % adicionando imagem no modelo

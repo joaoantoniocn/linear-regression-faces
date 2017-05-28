@@ -13,4 +13,4 @@ cortes = 2; % numero de cortes horizontais. Por padrao o numero de cortes
 MODELS = treinarLinearCrooped(downsampleX, downsampleY, cortes);
 
 %teste
-%resultados = estatisticaLinearRegressionCrooped(MODELS, downsampleX, downsampleY);
+resultados = estatisticaLinearRegressionCrooped(MODELS, downsampleX, downsampleY);
