@@ -9,13 +9,13 @@
 holdout_result = [];
 downsampleX = 20;
 downsampleY = 20;
-cortes = 3; % numero de divisões horizontais. Por padrao o numero de cortes
+cortes = 2; % numero de divisões horizontais. Por padrao o numero de cortes
             % verticais eh 1
-
+tic % começando a contar o tempo de execução do código
 % For com a quantidade de holdouts
-for i=1 : 50
+for i=1 : 10
     % arquivo que contem todos os holdouts
-    [treino teste] = separarbaseHoldout('./ARFaces.txt', i);
+    [treino teste] = separarbaseHoldout('./GTech.txt', i);
     
     % Criação dos Modelos
     MODELS = treinarLinearCroopedFile(treino, downsampleX, downsampleY, cortes);
@@ -31,4 +31,5 @@ end
 final_result = mean(holdout_result);
 final_result_desvio_padrao = std(holdout_result);
 
+toc % acabando de contar o tempo de execução do código
 
