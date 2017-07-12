@@ -2,22 +2,23 @@
 
 % Roda o LRC sem nenhuma alteração carregando os holdouts de um arquivo
 % .txt
-
+warning('off')
 % É de extrema importancia que a base a ser rodada com todas suas classes
 % esteja na pasta 'base'.
 holdout_result = [];
-downsampleX = 15; %GTech
-downsampleY = 15;
+num_features = 25;
 
 % For com a quantidade de holdouts
-for i=1 : 100
+for i=1 : 1
     % arquivo que contem todos os holdouts
-    [treino teste] = separarbaseHoldout('./GTech-25.txt', i);
+    [treino teste] = separarbaseHoldout('./YaleB.txt', i);
     
+    %[pca_treino, media_treino] = PCA(treino);
+    [pca_frac, media_frac] = PCAFracionario(treino, 1);
     % Criação dos modelos
-    MODELS = treinarLinearFile(treino, downsampleX, downsampleY);
+    MODELS = treinarLinearFilePCA(treino, pca_treino, media_treino, num_features);
     
-    resultados = estatisticaLinearRegressionFile(MODELS, teste, downsampleX, downsampleY);
+    resultados = estatisticaLinearRegressionFilePCA(MODELS, teste, pca_treino, media_treino, num_features);
     
     media = cell2mat(resultados(:, 2));
     media = mean(media);
@@ -27,3 +28,6 @@ end
 
 final_result = mean(holdout_result);
 final_result_desvio_padrao = std(holdout_result);
+
+load handel.mat
+sound(y)

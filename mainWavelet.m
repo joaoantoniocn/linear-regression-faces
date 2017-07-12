@@ -5,7 +5,7 @@
 holdout_result = [];
 for i=1 : 50
     % arquivo que contem todos os holdouts
-    [treino teste] = separarbaseHoldout('./GTech.txt', i);
+    [treino teste] = separarbaseHoldout('./GTech-25.txt', i);
     
     % Criação dos modelos
     MODELS = treinarLinearWavelet(treino);

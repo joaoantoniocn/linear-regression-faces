@@ -43,8 +43,15 @@ function [ indiceModelo ] = classificarLinearRegressionCrooped( MODELS, x)
             yChapeu = X*B;                % projecao
             vetorSubtracao = y - yChapeu; % subtraindo modelo original por modelo de outras imagens
             distanciaCorte = norm(vetorSubtracao, 2); % distancia euclidiana do vetorSubtracao
-            distanciaClasse = distanciaClasse + distanciaCorte; % somando a distancia de todos os cortes
             
+            % A distância da classe vai ser a menor distancia entre todos
+            % os cortes.
+            if (corte == 1)
+                distanciaClasse = distanciaCorte;
+            elseif(distanciaCorte < distanciaClasse)
+                    distanciaClasse = distanciaCorte;
+            end           
+                   
             if (mod(corte,2)==0)
                 valorYI = valorYF+1;
                 valorYF = valorYF + (tamX/cortes);
