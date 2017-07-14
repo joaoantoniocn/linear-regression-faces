@@ -6,19 +6,20 @@ warning('off')
 % É de extrema importancia que a base a ser rodada com todas suas classes
 % esteja na pasta 'base'.
 holdout_result = [];
-num_features = 25;
+num_features = 50;
+r = 0.6;      % fracionario
 
 % For com a quantidade de holdouts
-for i=1 : 1
+for i=1 : 10
     % arquivo que contem todos os holdouts
     [treino teste] = separarbaseHoldout('./YaleB.txt', i);
     
     %[pca_treino, media_treino] = PCA(treino);
-    [pca_frac, media_frac] = PCAFracionario(treino, 1);
+    [pca_frac, media_frac] = PCAFracionario(treino, r);
     % Criação dos modelos
-    MODELS = treinarLinearFilePCA(treino, pca_treino, media_treino, num_features);
+    MODELS = treinarLinearFilePCA(treino, pca_frac, media_frac, num_features, r);
     
-    resultados = estatisticaLinearRegressionFilePCA(MODELS, teste, pca_treino, media_treino, num_features);
+    resultados = estatisticaLinearRegressionFilePCA(MODELS, teste, pca_frac, media_frac, num_features, r);
     
     media = cell2mat(resultados(:, 2));
     media = mean(media);

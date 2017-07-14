@@ -1,4 +1,4 @@
-function [ resultados ] = estatisticaLinearRegressionFilePCA( MODELS, teste, pca_treino, media_treino, num_features)
+function [ resultados ] = estatisticaLinearRegressionFilePCA( MODELS, teste, pca_treino, media_treino, num_features, r)
 % entrada  -> MODELS         | Matriz com os modelos de cada classe
 %
 % entrada  -> teste          | indica quais arquivos do diretório './base/'
@@ -23,7 +23,7 @@ for i = 1 : length(classes)
         
         x = imread(file_origem);
         
-        y = linearFeaturesPCA(x, pca_treino, media_treino, num_features);
+        y = linearFeaturesPCA(x, pca_treino, media_treino, num_features, r);
         
         if(classificarLinearRegression(MODELS, y) == i)
             resultadoClasse = resultadoClasse + 1;

@@ -6,10 +6,10 @@ warning('off')
 % É de extrema importancia que a base a ser rodada com todas suas classes
 % esteja na pasta 'base'.
 holdout_result = [];
-num_features = 25;
+num_features = 50;
 
 % For com a quantidade de holdouts
-for i=1 : 10
+for i=1 : 1
     % arquivo que contem todos os holdouts
     [treino teste] = separarbaseHoldout('./YaleB.txt', i);
     

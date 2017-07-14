@@ -1,4 +1,4 @@
-function [ features ] = linearFeaturesPCA( image, pca_treino, media_treino, numero_features)
+function [ features ] = linearFeaturesPCA( image, pca_treino, media_treino, numero_features, r)
 %LINEARFEATURES Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -10,7 +10,7 @@ function [ features ] = linearFeaturesPCA( image, pca_treino, media_treino, nume
     features = features(:); % transforma em um vetor atraves de concatenacao de coluna
 
     % --- PCA ---
-    features = projetarPCA(features, pca_treino, media_treino, numero_features);
+    features = projetarPCA(features, pca_treino, media_treino, numero_features, r);
     % ---
     features = features';
     features = normc(features); % normaliza

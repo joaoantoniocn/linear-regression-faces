@@ -34,10 +34,11 @@ for i = 1 : length(classes)
     
 end
 
+x = [];     % liberando espaco
 [frac_cov media_treino] = fractionalcovariancia(TREINO, r);
 [autovetores autovalores] = eig(frac_cov);
 [autovetores autovalores] = ordenar( autovetores, autovalores );
-pca_frac = autovetores;
+pca_frac = expandirAutovetorFracional(autovetores, autovalores, TREINO, media_treino);
 
 end
 

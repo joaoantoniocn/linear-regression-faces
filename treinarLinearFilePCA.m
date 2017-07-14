@@ -1,4 +1,4 @@
-function [ MODELS ] = treinarLinearFilePCA( treino, pca_treino, media_treino, num_features)
+function [ MODELS ] = treinarLinearFilePCA( treino, pca_treino, media_treino, num_features, r)
 % saida -> MODELS            | Matriz tridimensional onde cada dimensão
 %                              representa o modelo de uma classe.
 %
@@ -21,7 +21,7 @@ for i = 1 : length(classes)
         x = imread(file_origem);
         
         % Extraindo as caracteristicas
-        x = linearFeaturesPCA(x, pca_treino, media_treino, num_features);
+        x = linearFeaturesPCA(x, pca_treino, media_treino, num_features, r);
         
         X = [X, x]; % adicionando imagem no modelo
     end
