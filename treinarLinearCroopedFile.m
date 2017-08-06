@@ -25,9 +25,18 @@ classes(1) = [];
 % passa por todas as classes
 for i = 1 : length(classes)
         
-    valorYI = 1;
-    valorYF = downsampleX/numeroCortes;
     amostras = strsplit(char(classes(i)), ',');
+    % --- pegando o tamanho das fotos ---
+    amostra_treino = char(amostras(2));
+    file_origem = strcat('./base/', amostra_treino);
+    x = imread(file_origem);
+    x = rgb2gray(x);
+    % ---
+    % --- recortando a imagem ---
+    [sizeY sizeX] = size(x);
+    valorYI = 1;
+    valorYF = sizeY/numeroCortes;
+    % ---------------------------
     
     % Passa por todos os cortes estipulados
     for corte=1 : (numeroCortes*2)
@@ -40,16 +49,17 @@ for i = 1 : length(classes)
             % imshow(file_origem);
             % tratando a imagem
             x = imread(file_origem);
-            x = imresize(x, [downsampleX, downsampleY]); % resize
-            x = rgb2gray(x);
             
+            x = rgb2gray(x);
+                        
             if (mod(corte, 2)==1)
-                x = x(valorYI:valorYF, 1:(downsampleY/2));
+                x = x(valorYI:valorYF, 1:(sizeX/2));          
             else
-                x = x(valorYI:valorYF, (downsampleY/2)+1:downsampleY);
+                x = x(valorYI:valorYF, (sizeX/2)+1:sizeX);                
             end
-            %imshow(x); %vendo o treinamento
-            x = linearFeaturesCrooped(x);
+            % ---------------------------
+            %imshow(x)
+            x = linearFeaturesCrooped(x, downsampleX, downsampleY);
             
             X = [X, x]; % adicionando imagem no modelo
         end % fotos de cada classe
@@ -57,7 +67,7 @@ for i = 1 : length(classes)
         
         if (mod(corte,2)==0)
             valorYI = valorYF+1;
-            valorYF = valorYF + (downsampleX/numeroCortes);
+            valorYF = valorYF + (sizeX/numeroCortes);
         end
       
         

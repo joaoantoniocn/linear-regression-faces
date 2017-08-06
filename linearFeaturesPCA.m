@@ -5,7 +5,7 @@ function [ features ] = linearFeaturesPCA( image, pca_treino, media_treino, nume
     image = rgb2gray(image);
     features = double(image);
     % --- essa linha é exclusivamente para a base GTech ---
-%     features = imresize(features, [150, 150]);
+      features = imresize(features, [150, 150]);
     % ---
     features = features(:); % transforma em um vetor atraves de concatenacao de coluna
 
@@ -13,6 +13,6 @@ function [ features ] = linearFeaturesPCA( image, pca_treino, media_treino, nume
     features = projetarPCA(features, pca_treino, media_treino, numero_features, r);
     % ---
     features = features';
-    features = normc(features); % normaliza
+%    features = normc(features); % normaliza
 end
 

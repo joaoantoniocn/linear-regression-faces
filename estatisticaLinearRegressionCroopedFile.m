@@ -31,10 +31,10 @@ for i = 1 : length(classes)
         % imshow(file_origem);
         % tratando a imagem
         x = imread(file_origem);
-        x = imresize(x, [downsampleX, downsampleY]); % resize
+%         x = imresize(x, [downsampleX, downsampleY]); % resize
         x = rgb2gray(x); % de colorido para preto e branco
         
-        if(classificarLinearRegressionCrooped(MODELS, x) == i)
+        if(classificarLinearRegressionCrooped(MODELS, x, downsampleX, downsampleY) == i)
             resultadoClasse = resultadoClasse + 1;
         end
         

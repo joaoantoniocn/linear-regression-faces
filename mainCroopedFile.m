@@ -6,16 +6,18 @@
 
 % É de extrema importancia que a base a ser rodada com todas suas classes
 % esteja na pasta 'base'.
+
+warning('off')
 holdout_result = [];
-downsampleX = 20;
-downsampleY = 20;
-cortes = 2; % numero de divisões horizontais. Por padrao o numero de cortes
+downsampleX = 10;
+downsampleY = 10;
+cortes = 5; % numero de divisões horizontais. Por padrao o numero de cortes
             % verticais eh 1
 tic % começando a contar o tempo de execução do código
 % For com a quantidade de holdouts
 for i=1 : 10
     % arquivo que contem todos os holdouts
-    [treino teste] = separarbaseHoldout('./GTech.txt', i);
+    [treino teste] = separarbaseHoldout('./ARFaces.txt', i);
     
     % Criação dos Modelos
     MODELS = treinarLinearCroopedFile(treino, downsampleX, downsampleY, cortes);
@@ -33,3 +35,5 @@ final_result_desvio_padrao = std(holdout_result);
 
 toc % acabando de contar o tempo de execução do código
 
+load handel.mat
+sound(y)

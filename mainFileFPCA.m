@@ -6,13 +6,13 @@ warning('off')
 % É de extrema importancia que a base a ser rodada com todas suas classes
 % esteja na pasta 'base'.
 holdout_result = [];
-num_features = 50;
-r = 0.6;      % fracionario
+num_features = 100;
+r = 0.1;      % fracionario
 
 % For com a quantidade de holdouts
 for i=1 : 10
     % arquivo que contem todos os holdouts
-    [treino teste] = separarbaseHoldout('./YaleB.txt', i);
+    [treino teste] = separarbaseHoldout('./GTech.txt', i);
     
     %[pca_treino, media_treino] = PCA(treino);
     [pca_frac, media_frac] = PCAFracionario(treino, r);

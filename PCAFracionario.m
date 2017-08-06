@@ -24,7 +24,7 @@ for i = 1 : length(classes)
         x = rgb2gray(x);
         x = double(x);
         % --- essa linha é exclusivamente para a base GTech ---
-%         x = imresize(x, [150, 150]);
+          x = imresize(x, [150, 150]);
         % ---
         x = x(:);   % transformando em um vetor coluna
         % ---

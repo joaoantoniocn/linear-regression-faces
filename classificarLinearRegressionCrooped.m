@@ -1,4 +1,4 @@
-function [ indiceModelo ] = classificarLinearRegressionCrooped( MODELS, x)
+function [ indiceModelo ] = classificarLinearRegressionCrooped( MODELS, x, downsampleX, downsampleY)
 %CLASSIFICARLINEARREGRESSION Summary of this function goes here
 %   
 % recebe as features y e os modelos e devolve o id da classe que y pertence
@@ -15,14 +15,17 @@ function [ indiceModelo ] = classificarLinearRegressionCrooped( MODELS, x)
     menorDistancia = 0;   
     indiceModelo = 0;
     
-    [tamX, tamY] = size(x); % tamanho da foto
+   % --- recortando a imagem ---
+    [sizeY sizeX] = size(x);
+    
+    % ---------------------------
     
     
     % Classes
     for(i=1 : dimensions)
         
         valorYI = 1;
-        valorYF = tamX/cortes;
+        valorYF = sizeY/cortes;
         distanciaClasse = 0;
         
         % Cortes por classe
@@ -31,12 +34,12 @@ function [ indiceModelo ] = classificarLinearRegressionCrooped( MODELS, x)
             x2 = x;
             
             if (mod(corte, 2)==1)
-                x2 = x2(valorYI:valorYF, 1:(tamY/2));
+                x2 = x2(valorYI:valorYF, 1:(sizeX/2));
             else
-                x2 = x2(valorYI:valorYF, (tamY/2)+1:tamY);
+                x2 = x2(valorYI:valorYF, (sizeX/2)+1:sizeX);
             end
             %imshow(x); %vendo a classificacao
-            y = linearFeaturesCrooped(x2);
+            y = linearFeaturesCrooped(x2, downsampleX, downsampleY);
             
             X = MODELS(:, :, i, corte);          % i ésimo modelo
             B = inv(X' * X) * X' * y;     % vetor de parametros
@@ -54,7 +57,7 @@ function [ indiceModelo ] = classificarLinearRegressionCrooped( MODELS, x)
                    
             if (mod(corte,2)==0)
                 valorYI = valorYF+1;
-                valorYF = valorYF + (tamX/cortes);
+                valorYF = valorYF + (sizeX/cortes);
             end
         end % cortes
              
