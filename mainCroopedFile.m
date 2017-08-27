@@ -17,7 +17,7 @@ tic % começando a contar o tempo de execução do código
 % For com a quantidade de holdouts
 for i=1 : 10
     % arquivo que contem todos os holdouts
-    [treino teste] = separarbaseHoldout('./ARFaces.txt', i);
+    [treino teste] = separarbaseHoldout('./GTech.txt', i);
     
     % Criação dos Modelos
     MODELS = treinarLinearCroopedFile(treino, downsampleX, downsampleY, cortes);

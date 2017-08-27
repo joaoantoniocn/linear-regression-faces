@@ -51,7 +51,13 @@ for i = 1 : length(classes)
             x = imread(file_origem);
             
             x = rgb2gray(x);
-                        
+            
+            % --- GTech ---
+            x = imresize(x, [150, 150]);
+            [sizeY sizeX] = size(x);
+            valorYI = 1;
+            valorYF = sizeY/numeroCortes;
+            % ---           
             if (mod(corte, 2)==1)
                 x = x(valorYI:valorYF, 1:(sizeX/2));          
             else

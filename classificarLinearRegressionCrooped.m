@@ -16,7 +16,10 @@ function [ indiceModelo ] = classificarLinearRegressionCrooped( MODELS, x, downs
     indiceModelo = 0;
     
    % --- recortando a imagem ---
-    [sizeY sizeX] = size(x);
+        % --- GTech ---
+        x = imresize(x, [150, 150]);
+        % ---
+   [sizeY sizeX] = size(x);
     
     % ---------------------------
     
